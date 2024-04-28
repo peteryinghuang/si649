@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<!-- 引入 ECharts 文件 -->
+	<script src="./js/jquery-3.2.1.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="./js/bootstrap.min.css" />
+	<style>
+		#scatter div {
+			width: 1000px!important;
+		}
+	</style>
+</head>
+
+	<body style="width:1000px;margin:0 auto;">
+		<a href="#title" style="position:fixed;bottom:10px;margin-left:1020px;">Back to the top</a>
+		<div style="text-align:center; line-height:50px;width:100%;font-size:30px;" id="title"><strong>Charting the Titans: The Rise and Reign of Olympic "Dream Teams"</strong></div>
+		<div style="text-align:left;line-height:25px;width:100%;margin:10px 0; text-align: justify;">In the grand theater of the Olympic Games, nations rise to etch their legacies in the annals of time, crafting narratives of triumph through sheer athletic prowess. This spectacle of human endeavor, where sweat and ambition meld under the five interlocking rings, showcases more than competition—it reveals a pattern of dominance by those rare "Dream Teams" that transcend ordinary limits. In this exposition, we journey through the statistical landscapes that map out the contours of Olympic greatness, tracing the arcs of countries that have consistently outshone their rivals. From the opening ceremony to the extinguishing of the flame, their stories unfold not just in the tally of medals, but in the enduring spirit they imbue into the heart of the Games.</div>
+
+
+		<script type="text/javascript" src="./js/echarts-all-3.js"></script>
+		<script type="text/javascript" src="./js/world.js"></script>
+		<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=b5Odt2kS457adO8ergMnrEj157Qfv9XR"></script>
+		<script type="text/javascript" src="./js/china.js"></script>
+		<script type="text/javascript" src="./js/bmap.min.js"></script>
+		<script type="text/javascript" src="./js/dataTool.min.js"></script>
+		<script src="./js/jquery-1.10.2.js"></script>
+
+		<div id="myTabs">
+
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Part I</a></li>
+				<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Part II</a></li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<!--Tab Part I-->
+				<div role="tabpanel" class="tab-pane active" id="home" style="padding-bottom: 15px;border-bottom: 2px solid gray;">
+					<div style="text-align:left;line-height:50px;width:100%;font-size:24px;text-align: justify;"><strong>The Mechanics of Mastery in Olympic Sports</strong></div>
+						<div style="text-align:justify; line-height:25px; width:100%; margin:10px 0;">
+							<p>How do we dissect the fabric of Olympic mastery to reveal the weave of its most dominant nations? The answer lies within the folds of the cumulative contribution algorithm—a mathematical tapestry charting the peaks of Olympic prowess. This analytical approach unveils the tapestry of dominance woven by the "Dream Teams" of the Olympics. The graph of preeminence is threaded with stories of absolute supremacy, prominently highlighted by the Chinese mastery in table tennis and the American reign in basketball. While the USA stands tall with its diving and archery prowess, the tenacity of the Chinese and South Korean teams is etched into the annals of these sports, crafting their enduring legacies.</p>
+						</div>
+
+					<!--pie00-->
+					<div id="pie00" style="width: 100%;height:300px;"></div>
+					<script src="./js/echarts-all-3.js"></script>
+					<script type="text/javascript">
+							// Based on the prepared DOM, initialize the echarts instance
+							var myChart = echarts.init(document.getElementById('pie00'));
+
+					    option = {
+					    series: [
+
+						        {
+						            name: 'table tennis2',
+						            type: 'pie',
+						            radius: '35%',
+						            center: ['15%', '30%'],
+						            label: {
+						                normal: {
+						                    show: true,
+						                    position: 'insideRight',
+						                }
+						            },
+						            data: [
+						                {value: 67.54, name: 'China Table Tennis: 67.54%', itemStyle: {color: '#c23531'}, label:{color:'white'}},
+						                {value: 13.16, name: 'Korea'},
+						                {value: 3.07, name: 'Sweden'},
+						                {value: 16.23, name: 'Others'}
+						            ]
+						        },
+								{
+										name: 'diving2',
+										type: 'pie',
+										radius : '35%',
+										center: ['36%', '70%'],
+										stack: 'Total',
+										label:{
+												normal: {
+														show: true,
+														position: 'insideRight',
+												}
+										},
+										data: [{value:38.30 , name:'USA Diving', itemStyle: {color: 'blue'}},
+ 								                {value: 23.29, name: 'China Diving: 23.29%', itemStyle: {color: '#c23531'}, label:{color:'white'}},
+												{value:6.38 , name:'Sweden'},
+												{value:4.26 , name:'Russia'},
+												{value:4.70 , name:'Germany'},
+												{value:3.02 , name:'Australia'},
+												{value:2.80 , name:'Italy'},
+												{value:17.25 , name:'Others'}]
+								},
+								{
+										name: 'archery2',
+										type: 'pie',
+										radius : '35%',
+										center: ['60%', '30%'],
+										stack: 'Total',
+										label:{
+												normal: {
+														show: true,
+														position: 'insideRight'
+												}
+										},
+							            data: [
+							                {value: 26.53, name: 'Korea Archery: 26.53%', itemStyle: {color: 'white'}, label: {color: '#fff'}},
+							                {value: 19.95, name: 'USA', itemStyle: {color: '#d48265'}},
+							                {value: 12.47, name: 'Belgium', itemStyle: {color: '#61a0a8'}},
+							                {value: 12.02, name: 'France', itemStyle: {color: '#91c7ae'}},
+							                {value: 29.02, name: 'Others', itemStyle: {color: '#ca8622'}}
+							            ]
+								},
+								{
+										name: 'basketball2',
+										type: 'pie',
+										radius : '35%',
+										center: ['70%', '70%'],
+										stack: 'Total',
+										label:{
+												normal: {
+														show: true,
+														position: 'insideRight',
+												}
+										},
+										data: [{value:47.14, name:'USABasketball:47.14%', itemStyle:{color: 'blue'}, label:{color:'white'}},
+												{value:2.38, name:'Argentina'},
+												{value:50.48, name:'Others'}]
+								},
+					    ]
+					};
+					// Display the chart with the specified configuration and data.
+					myChart.setOption(option);
+					</script>
+					<div style="text-align:center;line-height:25px;width:100%;margin:10px 0;">Figure 1: Contribution Rates of the "Dream Teams" to Their Sports</div>
+					<div>
+						<button onclick="toggleContent()" style="text-align: left; boarder-color: #404a59; padding: 10px; border-radius: 5px; width: auto; border: none; cursor: pointer; display: inline-block;">Cumulative Contribution Rate: <span style="float: right; font-size: 12px;">&#9660;</span>
+					    </button>
+					    <div id="content" style="display: none; background-color: #404a59; color: white; padding: 10px; border-radius: 5px;">
+					        <div style="text-align: left;">
+					            <script type="text/x-mathjax-config">
+					                MathJax.Hub.Config({ tex2jax: {inlineMath: [['$$','$$'], ['\\(','\\)']]}}); 
+					            </script>
+					            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+					            <p>The <strong>cumulative contribution rate</strong>, is calculated based on the different weights of gold, silver, and bronze medals. The medals are weighted as follows: gold = 4 points, silver = 2 points, and bronze = 1 point. The formula is: </p>
+					            <p id="formula" style="color: white;">$$\frac{\color{gold}{n_g} \times 4 + \color{silver}{n_s} \times 2 + \color{#cd7f32}{n_b} \times 1}{\color{gold}{N_g} \times 4 + \color{silver}{N_s} \times 2 + \color{#cd7f32}{N_b} \times 1}$$</p>
+					        </div>
+					        <ul>
+					            <li>\( n_g \): Number of gold medals won by the country</li>
+					            <li>\( n_s \): Number of silver medals</li>
+					            <li>\( n_b \): Number of bronze medals</li>
+					            <li>\( N_g \): Total number of gold medals awarded in the event</li>
+					            <li>\( N_s \): Total number of silver medals</li>
+					            <li>\( N_b \): Total number of bronze medals</li>
+					        </ul>
+					    </div>
+					</div>
+
+					<script>
+					function toggleContent() {
+					    var x = document.getElementById("content");
+					    if (x.style.display === "none") {
+					        x.style.display = "block";
+					    } else {
+					        x.style.display = "none";
+					    }
+					}
+					</script>
+
+					<script>
+					function toggleDefinitions() {
+					var x = document.getElementById("definitions");
+					if (x.style.display === "none") {
+					    x.style.display = "block";
+					} else {
+					    x.style.display = "none";
+					}
+					}
+					</script>
+
+
+					<div style="text-align:left;line-height:25px;width:100%;margin:10px 0;">As the accompanying chart shows, the "Dream Teams" demonstrate a clear-cut dominance in their sports, with the Chinese and American teams carving out vast portions of the pie chart—a visual testament to their unassailable positions. While the US shows competitive strength in diving and archery, it's the formidable presence of the Chinese divers and the precision of South Korean archers that command attention.</div>
+
+
+					<!--scatter0-->
+					<div id="scatter0" style="width: 100%;height:400px;"></div>
+
+					<script type="text/javascript">
+						// Based on the prepared DOM, initialize the echarts instance
+						var myChart = echarts.init(document.getElementById('scatter0'));
+
+						// Specify the configuration options and data for the chart
+						var dataCHN = [
+							[1988, 5, 2, 2, 1],
+							[1992, 6, 3, 2, 1],
+							[1996, 8, 4, 3, 1],
+							[2000, 8, 4, 3, 1],
+							[2004, 6, 3, 1, 2],
+							[2008, 8, 4, 2, 2],
+							[2012, 6, 4, 2, 0],
+							[2016, 6, 4, 2, 0],
+
+						];
+						var dataCHN4 = [
+
+							[1984, 3, 1, 1, 1],
+							[1988, 6, 2, 3, 1],
+							[1992, 5, 3, 1, 1],
+							[1996, 5, 3, 1, 1],
+							[2000, 10, 5, 5, 0],
+							[2004, 9, 6, 2, 1],
+							[2008, 11, 7, 1, 3],
+							[2012, 10, 6, 3, 1],
+							[2016, 10, 7, 2, 1],
+
+						];
+						var dataKOR1 = [
+
+							[1984, 2, 1, 0, 1],
+							[1988, 6, 3, 2, 1],
+							[1992, 4, 2, 2, 0],
+							[1996, 4, 2, 1, 1],
+							[2000, 5, 3, 1, 1],
+							[2004, 4, 3, 1, 0],
+							[2008, 5, 2, 2, 1],
+							[2012, 4, 3, 0, 1],
+							[2016, 5, 4, 0, 1],
+
+						];
+						var dataUSA2 = [
+							[1936, 1, 1, 0, 0],
+							[1948, 1, 1, 0, 0],
+							[1952, 1, 1, 0, 0],
+							[1956, 1, 1, 0, 0],
+							[1960, 1, 1, 0, 0],
+							[1964, 1, 1, 0, 0],
+							[1968, 1, 1, 0, 0],
+							[1972, 1, 0, 1, 0],
+							[1976, 2, 1, 1, 0],
+							[1984, 2, 2, 0, 0],
+							[1988, 2, 1, 0, 1],
+							[1992, 2, 1, 0, 1],
+							[1996, 2, 2, 0, 0],
+							[2000, 2, 2, 0, 0],
+							[2004, 2, 1, 0, 1],
+							[2008, 2, 2, 0, 0],
+							[2012, 2, 2, 0, 0],
+							[2016, 2, 2, 0, 0],
+
+						];
+
+						var schema = [
+							{ name: 'date', index: 0, text: 'Year' },
+							{ name: 'overall', index: 1, text: 'Total Medals' },
+							{ name: 'gold', index: 2, text: 'Gold Medals' },
+							{ name: 'silver', index: 3, text: 'Silver Medals' },
+							{ name: 'bronze', index: 4, text: 'Bronze Medals' },
+
+						];
+
+
+						var itemStyle = {
+							normal: {
+								opacity: 0.8,
+								shadowBlur: 10,
+								shadowOffsetX: 0,
+								shadowOffsetY: 0,
+								shadowColor: 'rgba(0, 0, 0, 0.5)'
+							}
+						};
+
+						option = {
+							
+							legend: {
+								y: 'top',
+								data: ['China Table Tennis', 'China Diving', 'KoreaArchery', 'USABasketball'],
+								textStyle: {
+									fontSize: 16
+								}
+							},
+							grid: {
+								x: '5%',
+								x2: 150,
+								y: '18%',
+								y2: '10%'
+							},
+							tooltip: {
+								padding: 10,
+
+								formatter: function (obj) {
+									var value = obj.value;
+									return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
+										+ obj.seriesName + ' ' + value[0] 
+
+										+ '</div>'
+										+ schema[1].text + '：' + value[1] + '<br>'
+										+ schema[2].text + '：' + value[2] + '<br>'
+										+ schema[3].text + '：' + value[3] + '<br>'
+										+ schema[4].text + '：' + value[4] + '<br>';
+								}
+							},
+							xAxis: {
+								type: 'value',
+								name: '年份',
+								nameGap: 16,
+								nameTextStyle: {
+									fontSize: 14
+								},
+								min: 1930,
+								max: 2016,
+								splitLine: {
+									show: false
+								},
+								axisLine: {
+									lineStyle: {
+									}
+								}
+							},
+							yAxis: {
+								type: 'value',
+								name: 'Medal Counts',
+								nameLocation: 'end',
+								nameGap: 20,
+								nameTextStyle: {
+									fontSize: 16
+								},
+								axisLine: {
+									lineStyle: {
+									}
+								},
+								splitLine: {
+									show: false
+								}
+							},
+							visualMap: [
+								{
+									left: 'right',
+									top: '10%',
+									dimension: 1,
+									min: 0,
+									max: 11,
+									itemWidth: 30,
+									itemHeight: 100,
+									calculable: true,
+									precision: 0.1,
+									text: ['Circle Size: Medals'],
+									textGap: 20,
+									textStyle: {
+									},
+									inRange: {
+										symbolSize: [20, 80]
+									},
+									outOfRange: {
+										symbolSize: [20, 80],
+										color: ['rgba(255,255,255,.2)']
+									},
+									controller: {
+										inRange: {
+											color: ['#c23531']
+										},
+										outOfRange: {
+											color: ['#444']
+										}
+									}
+								},
+								{
+									left: 'right',
+									bottom: '5%',
+									dimension: 2,
+									min: 0,
+									max: 5,
+									itemHeight: 100,
+									calculable: true,
+									precision: 0.1,
+									text: ['Gold Medals'],
+									textGap: 20,
+									textStyle: {
+									},
+									inRange: {
+										colorLightness: [1, 0.5]
+									},
+									outOfRange: {
+										color: ['rgba(255,255,255,.2)']
+									},
+									controller: {
+										inRange: {
+											color: ['#c23531']
+										},
+										outOfRange: {
+											color: ['#444']
+										}
+									}
+								}
+							],
+							series: [
+								{
+									name: 'China Table Tennis',
+									type: 'scatter',
+									itemStyle: itemStyle,
+									data: dataCHN
+								},
+								{
+									name: 'China Diving',
+									type: 'scatter',
+									itemStyle: itemStyle,
+									data: dataCHN4
+								},
+								{
+									name: 'KoreaArchery',
+									type: 'scatter',
+									itemStyle: itemStyle,
+									data: dataKOR1
+								},
+								{
+									name: 'USABasketball',
+									type: 'scatter',
+									itemStyle: itemStyle,
+									data: dataUSA2
+								}
+
+							]
+						};
+						// Display the chart with the specified configuration and data.
+						myChart.setOption(option);
+					</script>
+					
+					<div style="text-align:center;line-height:25px;width:100%;margin:10px 0;">Figure 2: Historical Award-Winning Situation of the "Dream Teams"</div>
+
+					<!-- Dropdown for selecting sports event -->
+					<div style="text-align: left; padding: 10px; border-radius: 5px; width: auto; margin-bottom: 10px;">
+					    <select id="sportSelect" onchange="toggleSport()" style="width: 100%; padding: 10px; width: auto;border-radius: 5px; cursor: pointer;">
+					        <option value="">Select a Sport</option>
+					        <option value="tableTennisContent">China Table Tennis</option>
+					        <option value="divingContent">China Diving</option>
+					        <option value="archeryContent">Korean Archery</option>
+					        <option value="basketballContent">USA Basketball</option>
+					    </select>
+					</div>
+
+					<!-- Content divs for each sport -->
+					<div id="tableTennisContent" class="sportContent" style="display: none; padding: 10px; border-radius: 5px;text-align: justify;background-color: #404a59; color: white;">
+					    <p>Looking at the award situation for each session of each country, China's dominance in table tennis has persisted throughout the entire time period and has not changed with different years or sessions. Since table tennis first became an official event at the Seoul Olympic Games in 1988, there have been 8 consecutive Olympic table tennis competitions to date. Except for the loss of four gold medals in 1988, 1992, and 2004, the China Table Tennis Dream Team won all other gold medals in the event, as well as as many silver and bronze medals as possible. Even after the International Table Tennis Federation implemented the Olympic table tennis "slimming" plan in 2010, reducing the number of singles entries from three to two and adjusting the order of events to play singles first and then team events, it did not change China's monopoly on the gold medals in the event.</p>
+					</div>
+					<div id="divingContent" class="sportContent" style="display: none; padding: 10px; border-radius: 5px; background-color: #404a59; color: white;text-align: justify;">
+					    <p>The award-winning situation for each session of the China Diving team clearly shows why the China Diving Dream Team ranks second in medal proportion. Diving has been an Olympic event since the inaugural 1896 Olympic Games. However, new China only began to officially participate in the Olympics after restoring its International Olympic Committee membership in the 1980s. That is to say, the U.S. team has competed in diving since the very first Olympics, while the Chinese team only started obtaining diving achievements at the 23rd Olympic Games in 1984. Especially after the year 2000, as can be seen from the scatter plot, the China Diving team consistently won 6 or 7 out of 8 gold medals at each session, maintaining a significant advantage in this dominant discipline.</p>
+					</div>
+					<div id="archeryContent" class="sportContent" style="display: none; padding: 10px; border-radius: 5px; background-color: #404a59; color: white;text-align: justify;">
+					    <p>Since the establishment of the women's archery event at the 1984 Los Angeles Olympics, South Korea has nearly monopolized the gold medals in individual and team archery. From the 1988 Olympics to present, the women's archery team gold has never been won by any other team and has always been kept by the Korean team. The Korean Dream Team has become the undisputed archery overlord.</p>
+					</div>
+					<div id="basketballContent" class="sportContent" style="display: none; padding: 10px; border-radius: 5px; background-color: #404a59; color: white;text-align: justify;">
+					    <p>After the U.S. men's basketball team won the gold medal at the 25th Olympic Games in Barcelona in 1992, the term "Dream Team" was coined. Since then, the subsequent American men's basketball teams comprised primarily of NBA players have been sequentially named as "Dream Team II," "Dream Team III," and so on. At the 1996 Atlanta Olympic Games and the 2000 Sydney Olympic Games, "Dream Team III" and "Dream Team IV" also won Olympic gold medals. However, during the semi-finals of the 2004 Olympics, "Dream Team VI" lost to Argentina, marking the first and only time the U.S. men's basketball team did not win gold at the Olympics since the term "Dream Team" was used. Since 2008, "Dream Team VIII," "Dream Team X," and "Dream Team XII" have swept 24 matches at the Olympic Games, successfully defending their title for the third consecutive Olympics. Additionally, the U.S. women's basketball team also won the gold medal at the 2016 Rio de Janeiro Games, achieving six consecutive Olympic championships.</p>
+					</div>
+
+					<script>
+						function toggleSport() {
+						    var selectedSport = document.getElementById("sportSelect").value;
+						    var contents = document.getElementsByClassName("sportContent");
+						    for (var i = 0; i < contents.length; i++) {
+						        contents[i].style.display = "none";  // Hide all contents
+						    }
+						    if (selectedSport) {
+						        document.getElementById(selectedSport).style.display = "block";  // Show the selected sport content
+						    }
+						}
+					</script>
+
+
+					<div style="text-align:left;line-height:25px;width:100%;margin:10px 0;">The "Dream Teams" have strong dominance in their respective sports, with both data showing a high degree of monopoly over the entire time period, such as the Chinese table tennis and American basketball teams, and other instances of segmented monopoly, like Korean women's archery after 1988 and China Diving after the year 2000.</div>
+				</div>
+
+				<!--Tab Part II-->
+				<div role="tabpanel" class="tab-pane" id="profile" style="padding-bottom: 15px;border-bottom: 2px solid gray;">
+					<div style="text-align:left;line-height:50px;width:100%;font-size:24px;"><strong>A Comparative View of Olympic Greatness</strong></div>
+						<div style="text-align:left; line-height:25px; width:100%; margin:10px 0;text-align:justify;">
+							<p>The United States has accumulated the most gold medals in Olympic history, with a total of 1022 medals, accounting for 21.27% of all gold medals awarded over 31 Olympiads, making it the biggest winner in Olympic history. Russia follows with nearly half the number of gold medals at 591, accounting for 12.3%, and Germany closely behind with 428 gold medals, amounting to 8.91%, showing that the US, Russia, and Germany indeed form the top trio of nations over the entire Olympic history cycle. The second group of seven countries each won gold medals falling within the range of [140, 265], with proportions varying from 3% to 5.5%. The US and Russia, as the main recipients of gold and overall medals, though also occupying the top two spots in terms of silver and bronze medals, exhibit a decreasing relationship in their total numbers of gold, silver, and bronze medals respectively. The silver and bronze medal counts for other countries have less deviation from their gold medal counts.</p>
+							
+						</div>
+
+						
+						<!--doughnut chart-->
+						<div id="pie1" style="width: 1000%;height:300px;"></div>
+						<script type="text/javascript">
+							// Based on the prepared DOM, initialize the echarts instance
+							var myChart = echarts.init(document.getElementById('pie1'));
+
+							// Specify the configure items and data of the charts
+							option = {
+								tooltip: {
+									trigger: 'item',
+									formatter: "{a} <br/>{b}: {c} ({d}%)"
+								},
+								legend: {
+									orient: 'vertical',
+									x: 'left',
+									data: ['USA', 'Russia', 'Germany', 'UK', 'China', 'France', 'Italy', 'Hungary', 'Sweden', 'Australia', 'Others']
+								},
+								series: [
+									{
+										name: 'Gold Medal Count(Propotion)',
+										type: 'pie',
+										radius: ['35%', '55%'],
+										center: ['20%', '60%'],
+										avoidLabelOverlap: false,
+										label: {
+											normal: {
+												show: false,
+												position: 'center'
+											},
+											emphasis: {
+												show: true,
+												textStyle: {
+													fontSize: '30',
+													fontWeight: 'bold'
+												}
+											}
+										},
+										labelLine: {
+											normal: {
+												show: false
+											}
+										},
+										data: [
+											{ value: 1022, name: 'USA' },
+											{ value: 591, name: 'Russia' },
+											{ value: 428, name: 'Germany' },
+											{ value: 263, name: 'UK' },
+											{ value: 227, name: 'China' },
+											{ value: 212, name: 'France' },
+											{ value: 206, name: 'Italy' },
+											{ value: 175, name: 'Hungary' },
+											{ value: 147, name: 'Sweden' },
+											{ value: 147, name: 'Australia' },
+											{ value: 1386, name: 'Others' },]
+									},
+									{
+										name: 'Silver Medal Count(Propotion)',
+										type: 'pie',
+										radius: ['20%', '35%'],
+										center: ['43%', '60%'],
+										avoidLabelOverlap: false,
+										label: {
+											normal: {
+												show: false,
+												position: 'center'
+											},
+											emphasis: {
+												show: true,
+												textStyle: {
+													fontSize: '20',
+													fontWeight: 'bold'
+												}
+											}
+										},
+										labelLine: {
+											normal: {
+												show: false
+											}
+										},
+										data: [
+											{ value: 794, name: 'USA' },
+											{ value: 500, name: 'Russia' },
+											{ value: 442, name: 'Germany' },
+											{ value: 295, name: 'UK' },
+											{ value: 162, name: 'China' },
+											{ value: 241, name: 'France' },
+											{ value: 178, name: 'Italy' },
+											{ value: 147, name: 'Hungary' },
+											{ value: 170, name: 'Sweden' },
+											{ value: 163, name: 'Australia' },
+											{ value: 1684, name: 'Others' },]
+									},
+									{
+										name: 'Bronze Medal Count(Propotion)',
+										type: 'pie',
+										radius: ['20%', '35%'],
+										center: ['63%', '60%'],
+										avoidLabelOverlap: false,
+										label: {
+											normal: {
+												show: false,
+												position: 'center'
+											},
+											emphasis: {
+												show: true,
+												textStyle: {
+													fontSize: '20',
+													fontWeight: 'bold'
+												}
+											}
+										},
+										labelLine: {
+											normal: {
+												show: false
+											}
+										},
+										data: [
+											{ value: 704, name: 'USA' },
+											{ value: 490, name: 'Russia' },
+											{ value: 476, name: 'Germany' },
+											{ value: 289, name: 'UK' },
+											{ value: 155, name: 'China' },
+											{ value: 260, name: 'France' },
+											{ value: 193, name: 'Italy' },
+											{ value: 169, name: 'Hungary' },
+											{ value: 179, name: 'Sweden' },
+											{ value: 187, name: 'Australia' },
+											{ value: 2020, name: 'Others' },]
+									},
+
+									{
+										name: ' 贡献率',
+										type: 'pie',
+										radius: ['35%', '55%'],
+										center: ['86%', '60%'],
+										avoidLabelOverlap: false,
+										label: {
+											normal: {
+												show: false,
+												position: 'center'
+											},
+											emphasis: {
+												show: true,
+												textStyle: {
+													fontSize: '30',
+													fontWeight: 'bold'
+												}
+											}
+										},
+										labelLine: {
+											normal: {
+												show: false
+											}
+										},
+										data: [
+											{ value: 6380, name: 'USA' },
+											{ value: 3854, name: 'Russia' },
+											{ value: 3072, name: 'Germany' },
+											{ value: 1931, name: 'UK' },
+											{ value: 1387, name: 'China' },
+											{ value: 1590, name: 'France' },
+											{ value: 1373, name: 'Italy' },
+											{ value: 1163, name: 'Hungary' },
+											{ value: 1107, name: 'Sweden' },
+											{ value: 1101, name: 'Australia' },
+											{ value: 10932, name: 'Others' },]
+									},
+								]
+							};
+							// Display the chart with the specified configuration and data.
+							myChart.setOption(option);
+						</script>
+
+					<div style="text-align:center;line-height:25px;width:100%;margin:10px 0;">Figure 3: Contribution Rates of the "Dream Teams" to Their Sports</div>
+					<div style="text-align:left; line-height:25px; width:100%; margin:10px 0;text-align:justify;">
+							<p>As shown in the fourth ring chart above, the United States is the country that contributes the most to the Olympic medals, calculating gold, silver, and bronze medals at values of 4, 2, and 1 point respectively, the US scores 6380, contributing to 18.83% of the total. It is worth mentioning that, among the ten countries, the contribution rate of each is generally consistent with the ranking in terms of gold medal proportion; however, China and France are exceptions. In terms of the number of gold medals, China's 227 surpass France's 212, but in terms of contribution rate, France's proportion of 4.69% slightly edges out China's 4.09%. Looking at the proportion of cumulative medal counts and contribution rates, the three countries in the first group, the US, Russia, and Germany, have a significant gap in winning situations from other countries and also dominate the overall Olympic performance.</p>
+					</div>
+						<!--bar1 Comparison of Olympic Powerhouses' Performance Over the Years-->
+						<div id="myChart" style="width: 1000%;height:400px;"></div>
+						<script type="text/javascript">
+							// Based on the prepared DOM, initialize the echarts instance
+							var myChart = echarts.init(document.getElementById('myChart'));
+
+							// Specify the configure items and data of the charts
+
+							/**
+							* Chart Controller
+							*/
+							var Chart = {
+								//Chart data
+								data: [
+									{
+										country: "USA",//Country Name
+										//Medal Statistics
+										medal: [
+											{
+												year: 2016,//Year
+												value: [46, 37, 38, 121] //Total Count of Gold, Silver, and Bronze Medals
+											},
+											{
+												year: 2012,
+												value: [46, 29, 29, 104]
+											},
+											{
+												year: 2008,
+												value: [36, 38, 36, 110]
+											},
+											{
+												year: 2004,
+												value: [35, 39, 29, 103]
+											},
+											{
+												year: 2000,
+												value: [39, 25, 33, 97]
+											},
+											{
+												year: 1996,
+												value: [44, 32, 25, 101]
+											},
+											{
+												year: 1992,
+												value: [37, 34, 37, 108]
+											},
+											{
+												year: 1988,
+												value: [36, 31, 27, 94]
+											},
+											{
+												year: 1984,
+												value: [83, 61, 30, 174]
+											},
+											{
+												year: 1980,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1976,
+												value: [34, 35, 25, 94]
+											},
+											{
+												year: 1972,
+												value: [33, 31, 30, 94]
+											},
+											{
+												year: 1968,
+												value: [45, 28, 34, 107]
+											},
+											{
+												year: 1964,
+												value: [36, 26, 28, 90]
+											},
+											{
+												year: 1960,
+												value: [34, 21, 16, 71]
+											},
+											{
+												year: 1956,
+												value: [32, 25, 17, 74]
+											},
+											{
+												year: 1952,
+												value: [40, 19, 17, 76]
+											},
+											{
+												year: 1948,
+												value: [38, 27, 19, 84]
+											},
+											{
+												year: 1936,
+												value: [24, 20, 12, 56]
+											},
+											{
+												year: 1932,
+												value: [41, 32, 30, 103]
+											},
+											{
+												year: 1928,
+												value: [22, 18, 16, 56]
+											},
+											{
+												year: 1924,
+												value: [45, 27, 27, 99]
+											},
+											{
+												year: 1920,
+												value: [41, 27, 27, 95]
+											},
+											{
+												year: 1912,
+												value: [25, 18, 20, 63]
+											},
+											{
+												year: 1908,
+												value: [23, 12, 12, 47]
+											},
+											{
+												year: 1904,
+												value: [77, 81, 78, 236]
+											},
+											{
+												year: 1900,
+												value: [20, 14, 14, 49]
+											},
+											{
+												year: 1896,
+												value: [11, 7, 2, 20]
+											}
+										]
+									},
+									{
+										country: "Russia",//Country Name
+										//Medal Statistics
+										medal: [
+											{
+												year: 2016,//Year
+												value: [19, 18, 19, 56] //Total Count of Gold, Silver, and Bronze Medals
+											},
+											{
+												year: 2012,
+												value: [24, 25, 33, 82]
+											},
+											{
+												year: 2008,
+												value: [23, 21, 28, 72]
+											},
+											{
+												year: 2004,
+												value: [27, 27, 38, 92]
+											},
+											{
+												year: 2000,
+												value: [32, 28, 28, 88]
+											},
+											{
+												year: 1996,
+												value: [26, 21, 16, 63]
+											},
+											{
+												year: 1992,
+												value: [45, 38, 29, 112]
+											},
+											{
+												year: 1988,
+												value: [55, 31, 46, 132]
+											},
+											{
+												year: 1984,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1980,
+												value: [80, 69, 46, 195]
+											},
+											{
+												year: 1976,
+												value: [49, 41, 35, 125]
+											},
+											{
+												year: 1972,
+												value: [50, 27, 22, 99]
+											},
+											{
+												year: 1968,
+												value: [29, 32, 30, 91]
+											},
+											{
+												year: 1964,
+												value: [30, 31, 35, 96]
+											},
+											{
+												year: 1960,
+												value: [43, 29, 31, 103]
+											},
+											{
+												year: 1956,
+												value: [37, 29, 32, 98]
+											},
+											{
+												year: 1952,
+												value: [22, 30, 19, 71]
+											},
+											{
+												year: 1948,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1936,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1932,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1928,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1924,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1920,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1912,
+												value: [0, 2, 3, 5]
+											},
+											{
+												year: 1908,
+												value: [1, 2, 0, 3]
+											},
+											{
+												year: 1904,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1900,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1896,
+												value: [0, 0, 0, 0]
+											}
+										]
+									},
+									{
+										country: "Germany",//Country Name
+										//Medal Statistics
+										medal: [
+											{
+												year: 2016,//Year
+												value: [17, 10, 15, 42] //Total Count of Gold, Silver, and Bronze Medals
+											},
+											{
+												year: 2012,
+												value: [11, 19, 14, 44]
+											},
+											{
+												year: 2008,
+												value: [16, 10, 15, 41]
+											},
+											{
+												year: 2004,
+												value: [14, 16, 18, 48]
+											},
+											{
+												year: 2000,
+												value: [14, 17, 26, 57]
+											},
+											{
+												year: 1996,
+												value: [20, 18, 27, 65]
+											},
+											{
+												year: 1992,
+												value: [33, 21, 28, 82]
+											},
+											{
+												year: 1988,
+												value: [48, 49, 45, 142]
+											},
+											{
+												year: 1984,
+												value: [17, 19, 23, 59]
+											},
+											{
+												year: 1980,
+												value: [47, 37, 42, 126]
+											},
+											{
+												year: 1976,
+												value: [50, 37, 42, 129]
+											},
+											{
+												year: 1972,
+												value: [33, 34, 39, 106]
+											},
+											{
+												year: 1968,
+												value: [14, 20, 17, 51]
+											},
+											{
+												year: 1964,
+												value: [10, 22, 8, 40]
+											},
+											{
+												year: 1960,
+												value: [12, 19, 11, 42]
+											},
+											{
+												year: 1956,
+												value: [7, 13, 7, 27]
+											},
+											{
+												year: 1952,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1948,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1936,
+												value: [33, 26, 30, 89]
+											},
+											{
+												year: 1932,
+												value: [3, 12, 5, 20]
+											},
+											{
+												year: 1928,
+												value: [10, 7, 14, 31]
+											},
+											{
+												year: 1924,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1920,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1912,
+												value: [5, 13, 7, 25]
+											},
+											{
+												year: 1908,
+												value: [3, 5, 5, 13]
+											},
+											{
+												year: 1904,
+												value: [4, 4, 5, 13]
+											},
+											{
+												year: 1900,
+												value: [4, 2, 2, 8]
+											},
+											{
+												year: 1896,
+												value: [6, 5, 2, 13]
+											}
+										]
+									},
+									{
+										country: "UK",//Country Name
+										//Medal Statistics
+										medal: [
+											{
+												year: 2016,//Year
+												value: [27, 17, 17, 61] //Total Count of Gold, Silver, and Bronze Medals
+											},
+											{
+												year: 2012,
+												value: [29, 17, 19, 65]
+											},
+											{
+												year: 2008,
+												value: [19, 13, 15, 47]
+											},
+											{
+												year: 2004,
+												value: [9, 9, 12, 30]
+											},
+											{
+												year: 2000,
+												value: [11, 10, 7, 28]
+											},
+											{
+												year: 1996,
+												value: [1, 8, 6, 15]
+											},
+											{
+												year: 1992,
+												value: [5, 3, 12, 20]
+											},
+											{
+												year: 1988,
+												value: [5, 10, 9, 24]
+											},
+											{
+												year: 1984,
+												value: [5, 10, 22, 37]
+											},
+											{
+												year: 1980,
+												value: [5, 7, 9, 21]
+											},
+											{
+												year: 1976,
+												value: [3, 5, 5, 13]
+											},
+											{
+												year: 1972,
+												value: [4, 5, 9, 18]
+											},
+											{
+												year: 1968,
+												value: [5, 5, 3, 13]
+											},
+											{
+												year: 1964,
+												value: [4, 12, 2, 18]
+											},
+											{
+												year: 1960,
+												value: [2, 6, 12, 20]
+											},
+											{
+												year: 1956,
+												value: [6, 7, 11, 24]
+											},
+											{
+												year: 1952,
+												value: [1, 2, 8, 11]
+											},
+											{
+												year: 1948,
+												value: [3, 14, 6, 23]
+											},
+											{
+												year: 1936,
+												value: [4, 7, 3, 14]
+											},
+											{
+												year: 1932,
+												value: [4, 7, 5, 16]
+											},
+											{
+												year: 1928,
+												value: [3, 10, 7, 20]
+											},
+											{
+												year: 1924,
+												value: [9, 13, 12, 34]
+											},
+											{
+												year: 1920,
+												value: [14, 15, 13, 42]
+											},
+											{
+												year: 1912,
+												value: [10, 15, 16, 41]
+											},
+											{
+												year: 1908,
+												value: [56, 51, 39, 146]
+											},
+											{
+												year: 1904,
+												value: [1, 1, 0, 2]
+											},
+											{
+												year: 1900,
+												value: [15, 6, 9, 30]
+											},
+											{
+												year: 1896,
+												value: [2, 3, 2, 7]
+											}
+										]
+									},
+									{
+										country: "China",//Country Name
+										//Medal Statistics
+										medal: [
+											{
+												year: 2016,//Year
+												value: [26, 18, 26, 70] //Total Count of Gold, Silver, and Bronze Medals
+											},
+											{
+												year: 2012,
+												value: [38, 27, 22, 87]
+											},
+											{
+												year: 2008,
+												value: [51, 21, 28, 100]
+											},
+											{
+												year: 2004,
+												value: [32, 17, 14, 63]
+											},
+											{
+												year: 2000,
+												value: [28, 16, 15, 59]
+											},
+											{
+												year: 1996,
+												value: [16, 22, 12, 50]
+											},
+											{
+												year: 1992,
+												value: [16, 22, 16, 54]
+											},
+											{
+												year: 1988,
+												value: [5, 11, 12, 28]
+											},
+											{
+												year: 1984,
+												value: [15, 8, 9, 32]
+											},
+											{
+												year: 1980,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1976,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1972,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1968,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1964,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1960,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1956,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1952,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1948,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1936,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1932,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1928,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1924,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1920,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1912,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1908,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1904,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1900,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1896,
+												value: [0, 0, 0, 0]
+											}
+										]
+									},
+									{
+										country: "France",//Country Name
+										//Medal Statistics
+										medal: [
+											{
+												year: 2016,//Year
+												value: [10, 18, 14, 42] //Total Count of Gold, Silver, and Bronze Medals
+											},
+											{
+												year: 2012,
+												value: [11, 11, 12, 34]
+											},
+											{
+												year: 2008,
+												value: [7, 16, 17, 40]
+											},
+											{
+												year: 2004,
+												value: [11, 9, 13, 33]
+											},
+											{
+												year: 2000,
+												value: [13, 14, 11, 38]
+											},
+											{
+												year: 1996,
+												value: [15, 7, 15, 37]
+											},
+											{
+												year: 1992,
+												value: [8, 5, 16, 29]
+											},
+											{
+												year: 1988,
+												value: [6, 4, 6, 16]
+											},
+											{
+												year: 1984,
+												value: [5, 7, 16, 28]
+											},
+											{
+												year: 1980,
+												value: [6, 5, 3, 14]
+											},
+											{
+												year: 1976,
+												value: [2, 3, 4, 9]
+											},
+											{
+												year: 1972,
+												value: [2, 4, 7, 13]
+											},
+											{
+												year: 1968,
+												value: [7, 3, 5, 15]
+											},
+											{
+												year: 1964,
+												value: [1, 8, 5, 15]
+											},
+											{
+												year: 1960,
+												value: [0, 2, 3, 5]
+											},
+											{
+												year: 1956,
+												value: [4, 4, 6, 14]
+											},
+											{
+												year: 1952,
+												value: [6, 6, 6, 18]
+											},
+											{
+												year: 1948,
+												value: [10, 6, 13, 29]
+											},
+											{
+												year: 1936,
+												value: [7, 6, 6, 19]
+											},
+											{
+												year: 1932,
+												value: [10, 5, 4, 19]
+											},
+											{
+												year: 1928,
+												value: [6, 10, 5, 21]
+											},
+											{
+												year: 1924,
+												value: [13, 15, 10, 38]
+											},
+											{
+												year: 1920,
+												value: [9, 19, 13, 41]
+											},
+											{
+												year: 1912,
+												value: [7, 4, 3, 14]
+											},
+											{
+												year: 1908,
+												value: [5, 5, 9, 19]
+											},
+											{
+												year: 1904,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1900,
+												value: [26, 41, 34, 101]
+											},
+											{
+												year: 1896,
+												value: [5, 4, 2, 11]
+											}
+										]
+									},
+									{
+										country: "Italy",//Country Name
+										//Medal Statistics
+										medal: [
+											{
+												year: 2016,//Year
+												value: [8, 12, 8, 28] //Total Count of Gold, Silver, and Bronze Medals
+											},
+											{
+												year: 2012,
+												value: [8, 9, 11, 28]
+											},
+											{
+												year: 2008,
+												value: [8, 10, 10, 28]
+											},
+											{
+												year: 2004,
+												value: [10, 11, 11, 32]
+											},
+											{
+												year: 2000,
+												value: [13, 8, 13, 34]
+											},
+											{
+												year: 1996,
+												value: [13, 10, 12, 35]
+											},
+											{
+												year: 1992,
+												value: [6, 5, 8, 19]
+											},
+											{
+												year: 1988,
+												value: [6, 4, 4, 14]
+											},
+											{
+												year: 1984,
+												value: [14, 6, 12, 32]
+											},
+											{
+												year: 1980,
+												value: [8, 3, 4, 15]
+											},
+											{
+												year: 1976,
+												value: [2, 7, 4, 13]
+											},
+											{
+												year: 1972,
+												value: [5, 3, 10, 18]
+											},
+											{
+												year: 1968,
+												value: [3, 4, 9, 16]
+											},
+											{
+												year: 1964,
+												value: [10, 10, 7, 27]
+											},
+											{
+												year: 1960,
+												value: [13, 10, 13, 36]
+											},
+											{
+												year: 1956,
+												value: [8, 8, 9, 25]
+											},
+											{
+												year: 1952,
+												value: [8, 9, 3, 21]
+											},
+											{
+												year: 1948,
+												value: [8, 12, 9, 29]
+											},
+											{
+												year: 1936,
+												value: [8, 9, 5, 22]
+											},
+											{
+												year: 1932,
+												value: [12, 12, 12, 36]
+											},
+											{
+												year: 1928,
+												value: [7, 5, 7, 19]
+											},
+											{
+												year: 1924,
+												value: [8, 3, 5, 16]
+											},
+											{
+												year: 1920,
+												value: [13, 5, 5, 23]
+											},
+											{
+												year: 1912,
+												value: [3, 1, 2, 6]
+											},
+											{
+												year: 1908,
+												value: [2, 2, 0, 4]
+											},
+											{
+												year: 1904,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1900,
+												value: [2, 1, 0, 3]
+											},
+											{
+												year: 1896,
+												value: [0, 0, 0, 0]
+											}
+										]
+									},
+									{
+										country: "Hungary",//Country Name
+										//Medal Statistics
+										medal: [
+											{
+												year: 2016,//Year
+												value: [8, 3, 4, 15] //Total Count of Gold, Silver, and Bronze Medals
+											},
+											{
+												year: 2012,
+												value: [8, 4, 5, 17]
+											},
+											{
+												year: 2008,
+												value: [3, 5, 2, 10]
+											},
+											{
+												year: 2004,
+												value: [8, 6, 3, 17]
+											},
+											{
+												year: 2000,
+												value: [8, 6, 3, 17]
+											},
+											{
+												year: 1996,
+												value: [7, 4, 10, 21]
+											},
+											{
+												year: 1992,
+												value: [11, 12, 7, 30]
+											},
+											{
+												year: 1988,
+												value: [11, 6, 6, 23]
+											},
+											{
+												year: 1984,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1980,
+												value: [7, 10, 15, 32]
+											},
+											{
+												year: 1976,
+												value: [4, 5, 13, 22]
+											},
+											{
+												year: 1972,
+												value: [6, 13, 16, 35]
+											},
+											{
+												year: 1968,
+												value: [10, 10, 12, 32]
+											},
+											{
+												year: 1964,
+												value: [10, 7, 5, 22]
+											},
+											{
+												year: 1960,
+												value: [6, 8, 7, 21]
+											},
+											{
+												year: 1956,
+												value: [9, 10, 7, 26]
+											},
+											{
+												year: 1952,
+												value: [16, 10, 16, 42]
+											},
+											{
+												year: 1948,
+												value: [10, 5, 12, 27]
+											},
+											{
+												year: 1936,
+												value: [10, 1, 5, 16]
+											},
+											{
+												year: 1932,
+												value: [6, 4, 5, 15]
+											},
+											{
+												year: 1928,
+												value: [4, 5, 0, 9]
+											},
+											{
+												year: 1924,
+												value: [2, 3, 4, 9]
+											},
+											{
+												year: 1920,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1912,
+												value: [3, 2, 3, 8]
+											},
+											{
+												year: 1908,
+												value: [3, 4, 2, 9]
+											},
+											{
+												year: 1904,
+												value: [2, 1, 1, 4]
+											},
+											{
+												year: 1900,
+												value: [1, 3, 2, 6]
+											},
+											{
+												year: 1896,
+												value: [2, 1, 3, 6]
+											}
+										]
+									},
+									{
+										country: "Sweden",//Country Name
+										//Medal Statistics
+										medal: [
+											{
+												year: 2016,//Year
+												value: [2, 6, 3, 11] //Total Count of Gold, Silver, and Bronze Medals
+											},
+											{
+												year: 2012,
+												value: [1, 4, 3, 8]
+											},
+											{
+												year: 2008,
+												value: [0, 4, 1, 5]
+											},
+											{
+												year: 2004,
+												value: [4, 1, 2, 7]
+											},
+											{
+												year: 2000,
+												value: [4, 5, 3, 12]
+											},
+											{
+												year: 1996,
+												value: [2, 4, 2, 8]
+											},
+											{
+												year: 1992,
+												value: [1, 7, 4, 12]
+											},
+											{
+												year: 1988,
+												value: [0, 4, 7, 11]
+											},
+											{
+												year: 1984,
+												value: [2, 11, 6, 19]
+											},
+											{
+												year: 1980,
+												value: [3, 3, 6, 12]
+											},
+											{
+												year: 1976,
+												value: [4, 1, 0, 5]
+											},
+											{
+												year: 1972,
+												value: [4, 6, 6, 16]
+											},
+											{
+												year: 1968,
+												value: [2, 1, 1, 4]
+											},
+											{
+												year: 1964,
+												value: [2, 2, 4, 8]
+											},
+											{
+												year: 1960,
+												value: [1, 2, 3, 6]
+											},
+											{
+												year: 1956,
+												value: [8, 5, 6, 19]
+											},
+											{
+												year: 1952,
+												value: [12, 13, 10, 35]
+											},
+											{
+												year: 1948,
+												value: [16, 11, 17, 44]
+											},
+											{
+												year: 1936,
+												value: [6, 5, 9, 20]
+											},
+											{
+												year: 1932,
+												value: [9, 5, 9, 23]
+											},
+											{
+												year: 1928,
+												value: [7, 6, 12, 25]
+											},
+											{
+												year: 1924,
+												value: [4, 13, 12, 29]
+											},
+											{
+												year: 1920,
+												value: [19, 20, 25, 64]
+											},
+											{
+												year: 1912,
+												value: [23, 24, 17, 64]
+											},
+											{
+												year: 1908,
+												value: [8, 6, 11, 25]
+											},
+											{
+												year: 1904,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1900,
+												value: [0, 0, 1, 1]
+											},
+											{
+												year: 1896,
+												value: [0, 0, 0, 0]
+											}
+										]
+									},
+									{
+										country: "Australia",//Country Name
+										//Medal Statistics
+										medal: [
+											{
+												year: 2016,//Year
+												value: [8, 11, 10, 29] //Total Count of Gold, Silver, and Bronze Medals
+											},
+											{
+												year: 2012,
+												value: [7, 16, 12, 35]
+											},
+											{
+												year: 2008,
+												value: [14, 15, 17, 46]
+											},
+											{
+												year: 2004,
+												value: [17, 16, 16, 49]
+											},
+											{
+												year: 2000,
+												value: [16, 25, 17, 58]
+											},
+											{
+												year: 1996,
+												value: [9, 9, 23, 41]
+											},
+											{
+												year: 1992,
+												value: [7, 9, 11, 27]
+											},
+											{
+												year: 1988,
+												value: [3, 6, 5, 14]
+											},
+											{
+												year: 1984,
+												value: [4, 8, 12, 24]
+											},
+											{
+												year: 1980,
+												value: [2, 2, 5, 9]
+											},
+											{
+												year: 1976,
+												value: [0, 1, 4, 5]
+											},
+											{
+												year: 1972,
+												value: [8, 7, 2, 17]
+											},
+											{
+												year: 1968,
+												value: [5, 7, 5, 17]
+											},
+											{
+												year: 1964,
+												value: [6, 2, 10, 18]
+											},
+											{
+												year: 1960,
+												value: [8, 8, 6, 22]
+											},
+											{
+												year: 1956,
+												value: [13, 8, 14, 35]
+											},
+											{
+												year: 1952,
+												value: [6, 2, 3, 11]
+											},
+											{
+												year: 1948,
+												value: [2, 6, 5, 13]
+											},
+											{
+												year: 1936,
+												value: [0, 0, 1, 1]
+											},
+											{
+												year: 1932,
+												value: [3, 1, 1, 5]
+											},
+											{
+												year: 1928,
+												value: [1, 2, 1, 4]
+											},
+											{
+												year: 1924,
+												value: [3, 1, 2, 6]
+											},
+											{
+												year: 1920,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1912,
+												value: [2, 2, 37]
+											},
+											{
+												year: 1908,
+												value: [1, 2, 2, 5]
+											},
+											{
+												year: 1904,
+												value: [0, 0, 0, 0]
+											},
+											{
+												year: 1900,
+												value: [2, 0, 3, 5]
+											},
+											{
+												year: 1896,
+												value: [2, 0, 0, 2]
+											}
+										]
+									}
+								],
+								/**
+								* Create a historical Medal Count chart for the top ten countries.
+								*/
+								drawTimeLineClomnChart: function () {
+									var xAxisData = [], timelineData = [], seriesData = [];
+
+									//Retrieve the array of years for the timeline.
+									$(this.data[0].medal).each(function () {
+										timelineData.push(this.year);
+									});
+
+									//Retrieve the x-axis ticks (array of countries).
+									$(this.data).each(function () {
+										xAxisData.push(this.country);
+									});
+
+									//Retrieve the data series for each indicator for every country for each year.
+									$(timelineData).each(function () {
+										var jin = [], yin = [], tong = [], total = [];
+
+										var out = this;
+										$(Chart.data).each(function () {
+											$(this.medal).each(function () {
+												if (this.year == out.toString()) {
+													jin.push(this.value[0]);
+													yin.push(this.value[1]);
+													tong.push(this.value[2]);
+													total.push(this.value[3]);
+												}
+											});
+										});
+										seriesData.push({
+											title: {text: this.toString()},
+											series: [
+												{ data: jin },
+												{ data: yin },
+												{ data: tong },
+												{ data: total }
+											]
+										});
+									});
+
+									var option = {
+										baseOption: {
+											timeline: {
+												axisType: 'category',
+												autoPlay: true, //Automatic playback: Yes/No
+												playInterval: 1500, //Playback interval time (ms)
+												data: timelineData,
+												left: 30,
+												right: 30
+											},
+											title: {
+												title: 'Comparison statistics of the top ten medal standings in Olympic history.',
+												x: 'center'
+											},
+											tooltip: {
+												trigger: "axis"
+											},
+											legend: {
+												x: 'right',
+												data: ['Gold Medal', 'Silver Medal', 'Bronze Medal', 'Total Medal']
+											},
+											calculable: false,
+											grid: {
+												left: 50,
+												right: 30,
+												top: 80,
+												bottom: 100,
+												tooltip: {
+													trigger: 'axis',
+													axisPointer: {
+														type: 'shadow',
+														label: {
+															show: true,
+															formatter: function (params) {
+																return params.value.replace('\n', '');
+															}
+														}
+													}
+												}
+											},
+											xAxis: [
+												{
+													type: 'category',
+													axisLabel: { interval: 0 },
+													splitLine: { show: false },
+													data: xAxisData
+												}
+											],
+											yAxis: [
+												{
+													type: 'value',
+													name: 'Medal Counts'
+												}
+											],
+											series: [
+												{ name: 'Gold Medal', type: 'bar' },
+												{ name: 'Silver Medal', type: 'bar' },
+												{ name: 'Bronze Medal', type: 'bar' },
+												{ name: 'Total Medal', type: 'bar' }
+											]
+										},
+										options: seriesData
+									};
+									var myChart = echarts.init(document.getElementById("myChart"));
+									myChart.setOption(option);
+								}
+							};
+
+							$(document).ready(function () {
+								Chart.drawTimeLineClomnChart();
+							})
+
+							// Display the chart with the specified configuration and data.
+							myChart.setOption(option);
+						</script>
+
+					<div style="text-align:center;line-height:50px;width:1000px;margin:10px 0;">Figure 4: Historical Changes in Medal Count</div>
+					<div style="text-align:left; line-height:25px; width:100%; margin:10px 0;text-align:justify;">
+							<p>China is a classic example of a rising powerhouse in the Olympic arena, winning its first Olympic gold in 1984, but it entered the top tier of the medal tally from 2000 and began consistently securing a spot in the top three. The Chinese team peaked at the 29th Beijing Olympics, topping the gold medal table with 51 medals – the first and only time it has achieved this position. During this Olympics, China blossomed in its strong events and also made significant breakthroughs in less expected ones. However, in the two Olympiad cycles that followed, due to team rejuvenation and the advancement of sports competition in more countries, the breakthrough of 2008 was not entirely sustained, but China still maintained its position in the leading group of the Olympics. Overall, a narrow range of medal-winning sports is a significant barrier to China achieving better Olympic results and represents the gap between it and the long-standing economic and sports superpowers of the US and Russia. Therefore, although the number of gold and total medals has declined since the peak in 2008, in recent Olympiads, the Chinese contingent is gradually expanding its medal and gold-winning range.</p>
+					</div>	
+
+				</div>
+
+							<script>
+										$('#myTabs a').click(function (e) {
+											e.preventDefault()
+											$(this).tab('show')
+										})
+							</script>
+
+
+
+
+
+
+				<script>
+							$('#myTabs a').click(function (e) {
+								e.preventDefault()
+								$(this).tab('show')
+							})
+				</script>
+
+		<div style="text-align:right;line-height:25px;width:100%;margin:10px 0;font-size:16px;">Data Source：</div>
+		<div style="text-align:right;line-height:25px;width:100%;margin:10px 0;font-size:16px;">Olympic Games Official Website：https://www.olympic.org</div>
+		<div style="text-align:right;line-height:25px;width:100%;margin:10px 0;font-size:16px;">Kaggle：https://www.kaggle.com</div>
+
+
+
+
+</body>
+
+</html>
